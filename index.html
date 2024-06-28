@@ -88,7 +88,7 @@
         return this.ints.reverse()
       }
     }
-    
+
     // 👉 CHALLENGE 2 NerfGun
     class NerfGun {
       // 🧠 Constructor takes one argument: the total number of projectiles supported by the instance
@@ -104,8 +104,30 @@
       //      * When engaging the safety, return "Safety enabled!"
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
-
+        constructor(num) {
+          this.currentAmmo = num
+          this.maxAmmo = num
+          this.isSafetyOn = true
+        }
+        shoot() {
+          if (this.currentAmmo > 0 && this.isSafetyOn === false) {
+            this.currentAmmo--
+            return 'Bang!'
+          } else {
+            return 'Click!'
+          }
+        }
+        toggleSafety() {
+          if (this.isSafetyOn) {
+            this.isSafetyOn = !this.isSafetyOn
+            return "Safety disabled!"
+          } else if (!this.isSafetyOn) {
+            this.isSafetyOn = true
+            return "Safety enabled!"
+          }
+        }
     }
+  
 
     // 👉 CHALLENGE 3 EBook
     class EBook {
@@ -123,8 +145,19 @@
       //    ebook.next() // returns null
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
-
+      constructor(str, num) {
+        this.text = str
+        this.pageSize = num
+      }
+      next() {
+        let page = []
+        for (let i =0; i < this.text.length; i += this.pageSize) {
+          let pageText = this.text.slice(i, i + this.pageSize)
+          page.push(pageText)
+        }
+        return page
     }
+  }
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
