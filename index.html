@@ -150,13 +150,14 @@
         this.pageSize = num
       }
       next() {
-        let page = []
-        for (let i =0; i < this.text.length; i += this.pageSize) {
-          let pageText = this.text.slice(i, i + this.pageSize)
-          page.push(pageText)
-        }
+        if (this.text.length === 0) {
+          return null
+        } 
+        let page = this.text.slice(0, this.pageSize)
+        this.text = this.text.slice(this.pageSize)
+
         return page
-    }
+      }
   }
 
     // 👉 CHALLENGE 4 AntFarm
@@ -193,6 +194,7 @@
       //      and with the piece of mind of all tests passing, refactor to use map/filter
 
     }
+
 
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
