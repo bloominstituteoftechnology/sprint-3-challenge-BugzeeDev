@@ -110,10 +110,10 @@
           this.isSafetyOn = true
         }
         shoot() {
-          if (this.currentAmmo > 0 && this.isSafetyOn === false) {
+          if (this.currentAmmo > 0 && !this.isSafetyOn) {
             this.currentAmmo--
             return 'Bang!'
-          } else {
+          } else if (this.currentAmmo <= 0 || this.isSafetyOn){
             return 'Click!'
           }
         }
@@ -126,6 +126,18 @@
             return "Safety enabled!"
           }
         }
+        reload(number) {
+          if (number <= 0 || typeof number != 'number') {
+            return 'Error reloading!'
+          } else if (number < this.maxAmmo) {
+            return this.currentAmmo
+          } else if (number > this.maxAmmo) {
+            return this.maxAmmo = this.currentAmmo
+          }
+          else {
+            return `${number} projectiles left!`
+          }
+       }
     }
   
 
