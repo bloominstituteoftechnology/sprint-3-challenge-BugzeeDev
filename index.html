@@ -240,21 +240,36 @@
 
       return `${initialAntCount} ants starting work!`
     }
-    feed(name) {
-      this.ants = this.ants.map(ant => {
-        if (ant.name === name) {
-          return {...ant, health: ant.health + 15};
-        } else {
-          return ant;
-        }
-      });
+    // feed(name) {
+    //   this.ants = this.ants.map(ant => {
+    //     if (ant.name === name) {
+    //       return {...ant, health: ant.health + 15}
+    //     } else {
+    //       return ant
+    //     }
+    //   })
 
-        if (this.ants.find(ant => ant.name === name)) {
-          return `Yum!`;
-        } else {
-          return `${name} not found!`;
-        }
-      }
+    //     if (this.ants.find(ant => ant.name === name)) {
+    //       return `Yum!`
+    //     } else {
+    //       return `${name} not found!`
+    //     }
+    //   }
+    // }
+    feed(name) {
+  let fedAnt = false;
+
+  this.ants = this.ants.map(ant => {
+    if (ant.name === name) {
+      fedAnt = true;
+      return {...ant, health: ant.health + 15};
+    } else {
+      return ant;
+    }
+  });
+
+  return fedAnt ? `Yum!` : `${name} not found!`;
+}
     }
 
 
