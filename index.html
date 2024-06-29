@@ -141,19 +141,18 @@
           }
         }
         reload(num) {
-  if (num <= 0 || typeof num != 'number') {
-    return 'Error reloading!';
-  }
+          if (num <= 0 || typeof num != 'number') {
+           return 'Error reloading!'
+          }
 
-  if (num + this.currentAmmo <= this.maxAmmo) {
-    this.currentAmmo += num;
-  } else {
-    this.currentAmmo = this.maxAmmo;
-  }
-
-  return `${this.currentAmmo} projectiles left!`;
-}
-    }
+          if (num + this.currentAmmo <= this.maxAmmo) {
+            this.currentAmmo += num
+          } else {
+            this.currentAmmo = this.maxAmmo
+          }
+            return `${this.currentAmmo} projectiles left!`
+        }
+      }
   
 
     // 👉 CHALLENGE 3 EBook
@@ -185,7 +184,7 @@
 
         return page
       }
-  }
+   }
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
@@ -219,7 +218,43 @@
       //      console.log(list) // prints ["a"]
       // 👉 HINT: if you are not feeling confident with map and filter, solve the problem with for loops,
       //      and with the piece of mind of all tests passing, refactor to use map/filter
+    constructor(...names) {
+      this.ants = names.map(name => {
+        return {
+          name: name,
+          health: 100
+        }
+      })
+    }        
+    work() {
+      if (this.ants.length === 0) {
+        return "No ants here. Did you work them to death?"
+      }
 
+      let initialAntCount = this.ants.length
+
+      this.ants = this.ants.filter(ant => {
+      ant.health -= 20
+      return ant.health > 0
+      })
+
+      return `${initialAntCount} ants starting work!`
+    }
+    feed(name) {
+      this.ants = this.ants.map(ant => {
+        if (ant.name === name) {
+          return {...ant, health: ant.health + 15};
+        } else {
+          return ant;
+        }
+      });
+
+        if (this.ants.find(ant => ant.name === name)) {
+          return `Yum!`;
+        } else {
+          return `${name} not found!`;
+        }
+      }
     }
 
 
