@@ -257,20 +257,20 @@
     //   }
     // }
     feed(name) {
-  let fedAnt = false;
+  let fedAnt = false
 
   this.ants = this.ants.map(ant => {
     if (ant.name === name) {
       fedAnt = true;
-      return {...ant, health: ant.health + 15};
+      return {...ant, health: ant.health + 15}
     } else {
-      return ant;
+      return ant
     }
-  });
+  })
 
-  return fedAnt ? `Yum!` : `${name} not found!`;
-}
+  return fedAnt ? `Yum!` : `${name} not found!`
     }
+  }
 
 
     // 🧪 TESTS, do not make any changes below this line ===================
