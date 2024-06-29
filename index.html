@@ -106,7 +106,7 @@
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
         constructor(num) {
           this.currentAmmo = num
-          this.maxAmmo = num
+          this.maxAmmo = this.currentAmmo
           this.isSafetyOn = true
         }
         shoot() {
@@ -117,6 +117,20 @@
             return 'Click!'
           }
         }
+      //   reload(num) {
+      //     if (num <= 0 || typeof num != 'number') {
+      //       return 'Error reloading!'
+      //     }
+      //     if (num <= this.maxAmmo)  {
+      //       return this.currentAmmo += num
+      //     }
+      //     if (num > this.maxAmmo) {
+      //       return this.currentAmmo += num
+      //     }
+      //     else {
+      //       return `${this.currentAmmo} projectiles left!`
+      //     }
+      //  }
         toggleSafety() {
           if (this.isSafetyOn) {
             this.isSafetyOn = !this.isSafetyOn
@@ -126,18 +140,19 @@
             return "Safety enabled!"
           }
         }
-        reload(number) {
-          if (number <= 0 || typeof number != 'number') {
-            return 'Error reloading!'
-          } else if (number < this.maxAmmo) {
-            return this.currentAmmo
-          } else if (number > this.maxAmmo) {
-            return this.maxAmmo = this.currentAmmo
-          }
-          else {
-            return `${number} projectiles left!`
-          }
-       }
+        reload(num) {
+  if (num <= 0 || typeof num != 'number') {
+    return 'Error reloading!';
+  }
+
+  if (num + this.currentAmmo <= this.maxAmmo) {
+    this.currentAmmo += num;
+  } else {
+    this.currentAmmo = this.maxAmmo;
+  }
+
+  return `${this.currentAmmo} projectiles left!`;
+}
     }
   
 
